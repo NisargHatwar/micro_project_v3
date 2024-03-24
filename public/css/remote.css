@@ -1,0 +1,59 @@
+@media screen and (orientation:portrait) {
+    #remote{
+        width: 100vw;
+    }
+}
+@media screen and (orientation:landscape){
+    #remote{
+        width: 40vw;
+        position: relative;
+        left: 30%;
+    }
+}
+#remote{
+    background-color: black;
+    height: 92vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.remote-button{
+    background-color: #34e98e;
+    margin: 0 5%;
+    flex: 1;
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+}
+.sw-name{
+    width: 50%;
+    text-align: center;
+}
+.sw-name > p {
+    font-size: 40px;
+    font-weight: 600;
+}
+.remote-btn{
+    height: 13vh;
+    width: 13vh;
+    background-color: #888888;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.remote-btn > img{
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+}
+.remote-btn:hover{
+    cursor: pointer;
+}
+.active{
+    color: rgb(22, 173, 22);
+}
+.inactive{
+    color: rgb(214, 32, 32);
+}

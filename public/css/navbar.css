@@ -1,0 +1,47 @@
+nav{
+    width: 100vw;
+    height: 8vh;
+    background-color: #333333;
+}
+.nav-ele{
+    position: relative;
+    top: 10%;
+    width: 60px;
+    height: 80%;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+}
+.long-nav-ele{
+    width: 135px;
+}
+.nav-ele-left{
+    float: left;
+}
+.nav-ele-right{
+    float: right;
+}
+.nav-ele-cont{
+    width: 80%;
+    text-decoration: none;
+    height: 90%;
+    margin: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.nav-ele-text{
+    font-size: 13px;
+    font-weight: 400;
+}
+.nav-ele-icon{
+    height: 70%;
+}
+#connect-state{
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
