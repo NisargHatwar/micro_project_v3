@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <%- include('partials/csslinks') %>
+</head>
+<body>
+    <%- include('partials/navbarlout') %>
+    <main class="container">
+        <h1 id="page-heading">Sign Up</h1>
+        <form action="/signup" method="post" onsubmit="return validateForm()">
+            <label for="suusername">Username:</label>
+            <input type="text" placeholder="Create Username" id="suusername" name="suusername">
+            <label for="supassword">Password:</label>
+            <input type="password" placeholder="Generate Password" id="supassword" name="supassword">
+            <label for="sucfpw">Re-enter:</label>
+            <input type="password" placeholder="Confirm Password" id="sucfpw" name="sucfpw">
+            <button>Submit</button>
+        </form>
+        <hr>
+        <p>
+            Already have an account? <a href="/login">Login</a>
+        </p>
+    </main>
+    <script>
+        function validateForm(){
+            //read data
+            const username = document.querySelector('#suusername').value;
+            const password = document.querySelector('#supassword').value;
+            const conpass = document.querySelector('#sucfpw').value;
+            //check if space is present in username
+            if(username.indexOf(' ') !== -1){
+                event.preventDefault();
+                alert("Space cannot be present in username");
+                return false;
+            }
+            //check if username have correct length
+            if((username.length < 5) || (username.length > 15)){
+                event.preventDefault();
+                alert("Length of username should not be less than 5 or more than 15");
+                return false;
+            }
+            //check if space is present in password
+            if(password.indexOf(' ') !== -1){
+                event.preventDefault();
+                alert("Space cannot be present in password");
+                return false;
+            }
+            //check if password is empty
+            if((password.length < 5) || (password.length > 15)){
+                event.preventDefault();
+                alert("Length of password can only be between 3 and 15");
+                return false;
+            }
+            //check if password and confirm password are same
+            if(password !== conpass){
+                event.preventDefault();
+                alert("password and confirm password should be same");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

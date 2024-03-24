@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Password</title>
+    <%- include('partials/csslinkslin',{IsConnected}) %>
+    <link rel="stylesheet" href="/css/change.css">
+</head>
+<body>
+    <%- include('partials/navbarlin',{ssID,IsConnected}) %>
+    <main class="container">
+        <h1 id="page-heading">Change password</h1>
+        <form id="myForm" action="/changepassword/<%= ssID %>" method="post" onsubmit="return validateForm()">
+            <label for="oldpass">Password: </label>
+            <input type="password" id="oldpass" name="oldpass" placeholder="Enter old password" required>
+            <label for="newpass">New Pass:</label>
+            <input type="password" name="newpass" id="newpass" placeholder="Enter new pass" required>
+            <label for="renewpass">Re-Enter:</label>
+            <input type="password" name="renewpass" id="renewpass" placeholder="Re-enter new pass" required>
+            <button>Submit</button>
+        </form>
+        <hr>
+        <p>Don't want to change password? <a href="/profile/<%= ssID %>">Go back</a></p>
+    </main>
+</body>
+<script>
+    function validateForm() {
+        const oldpass = document.querySelector("#oldpass").value;
+        const newpass = document.querySelector("#newpass").value;
+        const renewpass = document.querySelector("#renewpass").value;
+        if((oldpass.length < 5) || (oldpass.length > 15)){
+            alert("Incorrect old password");
+            return false;
+        }
+        if(oldpass === newpass){
+            alert("old password and new password cannot be same");
+            return false;
+        }
+        if(newpass.indexOf(' ') !== -1){
+            alert("Invalid new password. Password cannot contain space")
+            return false
+        }
+        if((newpass.length < 5) || (newpass.length > 15)){
+            alert("The new password should have a length between 5 and 15");
+            return false;
+        } 
+        if(newpass !== renewpass){
+            alert("new password and re-entered new password should be same");
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>

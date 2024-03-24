@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= status %> Error</title>
+    <%- include("partials/csslinks.ejs") %>
+</head>
+<body>
+    <%- include('partials/navbarlout') %>
+    <main class="container">
+        <h1 id="page-heading">Error</h1>
+        <h2><%= message %></h2>
+        <p>Status code: <%= status %></p>
+        <button onclick="goBack()">Go back</button>
+    </main>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

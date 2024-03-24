@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote</title>
+    <%- include('partials/csslinkslin',{IsConnected}) %>
+    <link rel="stylesheet" href="/css/remote.css">
+</head>
+<body>
+    <%- include("partials/navbarlin",{IsConnected,ssID}) %>
+    <main id="remote">
+        <% for(let i = 0;i<5;i++){ %>
+            <section class="remote-button">
+                <div class="sw-name">
+                    <p class="<%= parseInt(swControl[i])?"active":"inactive" %>"><%= swNames[i][0].toUpperCase() + swNames[i].slice(1) %></p>
+                </div>
+                <div class="remote-btn <%= parseInt(swState[i])?"onState":"offState" %>">
+                    <img src="/icons/power_icon.png" alt="power">
+                </div>
+            </section>
+        <% } %>
+    </main>
+    <script>
+        function postReq(i,flag){
+            const user = '<%= serID %>'
+            const password = '<%= pass %>';
+            const ID = '<%= ssID %>'
+
+            const data = {
+                user,
+                password,
+                button:i,
+                state:!flag
+            };
+            fetch(`/remote/${ID}`, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+            
+        })
+        .then(response => {
+            if(!response.ok){
+                console.log('Network response was not okay');
+                location.reload(true);
+            }
+            location.reload(true);
+            return response.json();
+        })
+        .catch(err => {
+            console.log("There was a problem with your fetch operation:",error);
+        });
+        return;
+        }
+        const remote = document.querySelector("#remote");
+        const sections = remote.children;
+        const remote_btns = document.querySelectorAll(".remote-btn");
+        for(let i=0;i<5;i++){
+            const clickable = sections[i].children[1];
+            const flag = clickable.classList.contains("onState");
+            const handleClick = () => {
+                postReq(i,flag);
+                clickable.removeEventListener('click,handleClick');
+            };
+            clickable.addEventListener("click",handleClick,{once:true});
+        }
+        setInterval(() => {
+            location.reload(true);
+        },60*1000);
+    </script>
+</body>
+</html>

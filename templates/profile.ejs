@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <%- include('partials/csslinkslin',{IsConnected}) %>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <%- include("partials/navbarlin.ejs",{ssID,IsConnected}) %>
+    <main class="container">
+        <h1 id="page-heading">Profile</h1>
+        <div id="uname">
+            <p><b>Username:</b> <span><%= username %></span></p>
+            <span>
+                <a href="/changeusername/<%= ssID %>">Change username</a>
+            </span>
+        </div>
+        <div id="pass">
+            <p><b>Password:</b> 
+                <span>
+                <%const i = cookie["pass"].length; %>
+                <% let str = "" %>
+                <%for(let j=0;j<i;j++){ str = str + "*"} %>
+                <%= str %>
+            </span>
+        </p>
+        <span>
+            <a href="/changepassword/<%= ssID %>">Change password</a>
+        </span>
+        </div>
+        <!-- <a href="/home">Logout</a> -->
+        <form action="/logout/<%= ssID %>" method="post">
+            <button>Logout</button>
+        </form>
+    </main>
+</body>
+</html>

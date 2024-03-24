@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="/css/navbar.css">
+<link rel="stylesheet" href="/css/common.css">
+<% if (IsConnected) { %>
+    <style>
+        #connect-state{
+            color: rgb(15, 131, 15);
+            -webkit-text-stroke: 1px rgb(0, 124, 0);
+        }
+    </style>
+    <% }else{ %>
+    <style>
+        #connect-state{
+            color: rgb(190, 15, 15);
+            -webkit-text-stroke: 1px rgb(126, 0, 0);
+        }
+    </style>
+<% } %>

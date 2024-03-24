@@ -1,0 +1,31 @@
+<nav>
+    <div class="nav-ele nav-ele-left">
+        <a href=<%= `/home/${ssID}` %> class="nav-ele-cont">
+            <img src="/icons/home_icon.png" alt="home" class="nav-ele-icon">
+            <p class="nav-ele-text">Home</p>
+        </a>
+    </div>
+    <div class="nav-ele nav-ele-right">
+        <a href=<%= `/profile/${ssID}` %> class="nav-ele-cont">
+            <img src="/icons/profile_icon.png" alt="profile" class="nav-ele-icon">
+            <p class="nav-ele-text">Profile</p>
+        </a>
+    </div>
+    <div class="nav-ele nav-ele-right">
+        <a href=<%= `/remote/${ssID}` %> class="nav-ele-cont">
+            <img src="/icons/remote_icon.png" alt="remote" class="nav-ele-icon">
+            <p class="nav-ele-text">Remote</p>
+        </a>
+    </div>
+    <div class="nav-ele nav-ele-right">
+        <a href=<%= `/edit/${ssID}` %> class="nav-ele-cont">
+            <img src="/icons/edit_icon.png" alt="edit" class="nav-ele-icon">
+            <p class="nav-ele-text">Edit</p>
+        </a>
+    </div>
+    <div class="nav-ele nav-ele-right long-nav-ele">
+        <p id="connect-state">
+            <%= IsConnected?"Connected":"Not connected" %>
+        </p>
+    </div>
+</nav>

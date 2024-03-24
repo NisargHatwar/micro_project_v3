@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit buttons</title>
+    <link rel="stylesheet" href="/css/edit.css">
+    <%- include('partials/csslinkslin',{IsConnected}) %>
+</head>
+<body>
+    <%- include('partials/navbarlin.ejs',{ssID,IsConnected}) %>
+    <main class="container">
+        <h1 id="page-heading">
+            Edit buttons
+        </h1>
+        <form action="/edit/<%= ssID %>" method="post">
+            <% for(let i = 0;i<5;i++){ %>
+                <label for="button-<%= i %>">Button <%= i + 1 %> : </label>
+                <input type="text" id="button-<%= i %>" value="<%= names[i] %>" minlength="3" maxlength="15" name="<%= def[i] %>">
+            <% } %>
+            <button>Save changes</button>
+        </form>
+    </main>
+</body>
+</html>

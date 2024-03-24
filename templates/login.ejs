@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('partials/csslinks') %>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <%- include('partials/navbarlout') %>
+    <main class="container">
+        <h1 id="page-heading">Login Page</h1>
+        <form action="/login" method="post" onsubmit="return validateForm()">
+            <label for="login-username">Username: </label>
+            <input type="text" id="login-username" placeholder="Username" name="lguname">
+            <label for="login-password">Password: </label>
+            <input type="password" id="login-password" placeholder="Password" name="lgpass">
+            <button>Submit</button>
+        </form>
+        <hr>
+        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+    </main>
+    <script>
+        function validateForm() {
+            const uname = document.querySelector("#login-username").value;
+            const upass = document.querySelector("#login-password").value;
+            if((uname.length <= 5) || (uname.length >=15)){
+                alert("Invalid username");
+                return false;
+            }
+            if((upass.length <= 5) || (upass.length >= 15)){
+                alert("Invalid password");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

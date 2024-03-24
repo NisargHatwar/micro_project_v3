@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Username</title>
+    <%- include('partials/csslinkslin',{IsConnected}) %>
+        <link rel="stylesheet" href="/css/change.css">
+</head>
+<body>
+    <%- include('partials/navbarlin',{ssID,IsConnected}) %>
+    <main class="container">
+        <h1 id="page-heading">Change Username</h1>
+        <form action="/changeusername/<%= ssID %>" method="post">
+            <label for="uname">Username:</label>
+            <input type="text" id="uname" name="new_uname" placeholder="Enter new username" required minlength="5" maxlength="15">
+            <label for="pass">Password:</label>
+            <input type="password" name="pass" id="pass" placeholder="Re-enter your password" required minlength="5" maxlength="15">
+            <button>Submit</button>
+        </form>
+        <hr>
+        <p>Don't want to change username? <a href="/profile/<%= ssID %>">Go back</a></p>
+    </main>
+</body>
+</html>
