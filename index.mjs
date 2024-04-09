@@ -298,6 +298,26 @@ app.get('/api/:uname/:pass', async (req,res) => {
         res.status(404).send("User not found");
     }
 })
+app.get('/api/:uname/:pass/:num', async(req,res) => {
+    const {uname,pass,num} = req.params;
+    if((num >= 0) && (num < 5) && ((parseInt(num) % 1) === 0)){
+        if(await doesUserExist(uname)){
+            const serID = await getSerID(uname);
+            if(await checkPass(serID,pass)){
+                const swStates = await readData("switchstates.json");
+                const data = swStates[serID];
+                console.log(data);
+                res.json(data[num]?true:false);
+            }else{
+                res.status(403).send("Incorrect password");
+            }
+        }else{
+            res.status(404).send("User not found");
+        }
+    }else{
+        res.status(400).send("Invalid switch number");
+    }
+})
 app.post("/api/swcontrol", async (req,res) => {
     const {pin4,pin5,pin6,pin7,pin8,username,password} = req.body;
     if(await doesUserExist(username)){
