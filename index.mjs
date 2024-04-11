@@ -285,6 +285,7 @@ app.post("/logout/:ssID", async (req,res) => {
 app.get('/api/:uname/:pass', async (req,res) => {
     const { uname,pass } = req.params;
     if(await doesUserExist(uname)){
+        console.log("get request received");
         const serID = await getSerID(uname);
         if(await checkPass(serID,pass)) {
             const swStates = await readData("switchstates.json");
