@@ -285,12 +285,18 @@ app.post("/logout/:ssID", async (req,res) => {
 app.get('/api/:uname/:pass', async (req,res) => {
     const { uname,pass } = req.params;
     if(await doesUserExist(uname)){
-        console.log("get request received");
         const serID = await getSerID(uname);
         if(await checkPass(serID,pass)) {
+            console.log("get request received");
             const swStates = await readData("switchstates.json");
             const data = swStates[serID];
-            res.json(data);
+            const obj = {};
+            obj["first"] = ((data[0] === 1)?"on":"off");
+            obj["second"] = ((data[1] === 1)?"on":"off");
+            obj["third"] = ((data[2] === 1)?"on":"off");
+            obj["fourth"] = ((data[3] === 1)?"on":"off");
+            obj["fifth"] = ((data[4] === 1)?"on":"off");
+            res.json(obj);
         }
         else{
             res.status(403).send("Incorrect password");
