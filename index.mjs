@@ -290,13 +290,7 @@ app.get('/api/:uname/:pass', async (req,res) => {
             console.log("get request received");
             const swStates = await readData("switchstates.json");
             const data = swStates[serID];
-            const obj = {};
-            obj["first"] = ((data[0] === 1)?1:0);
-            obj["second"] = ((data[1] === 1)?1:0);
-            obj["third"] = ((data[2] === 1)?1:0);
-            obj["fourth"] = ((data[3] === 1)?1:0);
-            obj["fifth"] = ((data[4] === 1)?1:0);
-            res.json(obj);
+            res.json(data);
         }
         else{
             res.status(403).send("Incorrect password");
