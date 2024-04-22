@@ -159,7 +159,7 @@ app.get("/remote/:ssID", async (req,res) => {
     if(await validateCookie(ssID)){
         const swNamesfile = await readData("switchnames.json");
         const swStatesfile = await readData("switchstates.json");
-        const swControlfile = await readData("switchcontrol.json");
+        const swControlfile = await readData("switchstates.json");
 
         const cookie = await getCookie(ssID);
         
